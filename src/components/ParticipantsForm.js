@@ -2,7 +2,7 @@ import React from "react";
 import ParticipantsInput from "./ParticipantsInput";
 import { FaUserPlus } from 'react-icons/fa';
 
-class PeopleForm extends React.Component {
+class ParticipantsForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -21,11 +21,18 @@ class PeopleForm extends React.Component {
 		});
 	}
 
+	handleSubmit(e) {
+		e.preventDefault();
+		console.log('Você clicou em enviar.');
+	}
+
 	render() {
-		const participants = this.state.participants.map((p, i) => <ParticipantsInput key={i} number={i} name={p} />);
+		const participants = this.state.participants.map(
+			(participant, index) => <ParticipantsInput key={index} number={index} name={participant} />
+		);
 
 		return (
-			<form className="border-2 border-sky-500 place-self-center">
+			<form onSubmit={this.handleSubmit} className="border-2 border-sky-500 place-self-center">
 				<div>
 					{participants}
 				</div>
@@ -34,7 +41,7 @@ class PeopleForm extends React.Component {
 						<FaUserPlus className="text-green-600" />
 						<label className="text-green-600">Adicionar Participante</label>
 					</button>
-					<button type="button">
+					<button type="submit">
 						Ir para tarefas
 					</button>
 				</div>
@@ -43,4 +50,4 @@ class PeopleForm extends React.Component {
 	}
 }
 
-export default PeopleForm;
+export default ParticipantsForm;

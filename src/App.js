@@ -1,10 +1,10 @@
 import './App.css';
-import PeopleForm from './components/PeopleForm.js';
+import ParticipantsForm from './components/ParticipantsForm.js';
 
 function App() {
 	return (
 		<div className="App">
-			<PeopleForm />
+			<ParticipantsForm />
 		</div>
 	);
 }
