@@ -1,6 +1,6 @@
 import React from "react";
-import ParticipantsInput from "./ParticipantsInput";
 import { FaUserPlus } from 'react-icons/fa';
+import { MdPersonRemove } from 'react-icons/md';
 
 class ParticipantsForm extends React.Component {
 	constructor(props) {
@@ -8,13 +8,17 @@ class ParticipantsForm extends React.Component {
 		this.state = {
 			participants: []
 		};
+
 		this.handleParticipantInsert = this.handleParticipantInsert.bind(this);	
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleRemoveParticipant = this.handleRemoveParticipant.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
 	}
 
 	handleParticipantInsert() {
 		let participants = this.state.participants;
 
-		participants.push({name: ''});
+		participants.push('');
 
 		this.setState({
 			participants: participants
@@ -22,13 +26,52 @@ class ParticipantsForm extends React.Component {
 	}
 
 	handleSubmit(e) {
+		console.log('handleSubmit');
 		e.preventDefault();
 		console.log('Você clicou em enviar.');
+		console.log(this.state.participants);
+	}
+
+	handleRemoveParticipant(participantNumber) {
+		let participants = this.state.participants;
+
+		participants.splice(participantNumber, 1);
+
+		this.setState({
+			participants: participants
+		});
+	}
+
+	handleInputChange(event) {
+		const name = event.target.name;
+		const value = event.target.value;
+		const participants = this.state.participants;
+		participants[name] = value;
+
+		this.setState({
+			participants
+		});
 	}
 
 	render() {
 		const participants = this.state.participants.map(
-			(participant, index) => <ParticipantsInput key={index} number={index} name={participant} />
+			(participant, index) =>
+				<div key={index}>
+					<label className="my-1 mx-2">Participante {index+1}</label>
+					<input
+						type='text'
+						value={participant}
+						className="border-b-2 border-gray-200 focus:border-0 focus-visible:border-0"
+						onChange={this.handleInputChange}
+						name={index}
+					/>
+					<button
+						type="button"
+						className="p-1"
+						onClick={this.handleRemoveParticipant.bind(this, index)}>
+							<MdPersonRemove className="text-red-500" />
+					</button>
+				</div>
 		);
 
 		return (
@@ -41,7 +84,7 @@ class ParticipantsForm extends React.Component {
 						<FaUserPlus className="text-green-600" />
 						<label className="text-green-600">Adicionar Participante</label>
 					</button>
-					<button type="submit">
+					<button type="submit" onClick={this.handleSubmit}>
 						Ir para tarefas
 					</button>
 				</div>
