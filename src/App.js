@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import ParticipantsForm from './components/ParticipantsForm.js';
 
 function App() {
