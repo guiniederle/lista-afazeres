@@ -1,6 +1,7 @@
 import React from "react";
 import { FaUserPlus } from 'react-icons/fa';
 import { MdPersonRemove } from 'react-icons/md';
+import { Form } from "react-router-dom";
 
 class DinamicForm extends React.Component {
 	constructor(props) {
@@ -75,7 +76,7 @@ class DinamicForm extends React.Component {
 		);
 
 		return (
-			<form onSubmit={this.handleSubmit} className="">
+			<Form method="get" action="/tasks">
 				<div>
 					{participants}
 				</div>
@@ -84,11 +85,13 @@ class DinamicForm extends React.Component {
 						<FaUserPlus className="" />
 						<label className="">Adicionar Participante</label>
 					</button>
-					<button type="submit" onClick={this.handleSubmit}>
+					<button
+						type="submit"
+					>
 						Ir para tarefas
 					</button>
 				</div>
-			</form>
+			</Form>
 		);
 	}
 }

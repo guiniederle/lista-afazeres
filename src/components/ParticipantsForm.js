@@ -5,9 +5,11 @@ class ParticipantsForm extends React.Component
 {
     render() {
         return (
-            <div>
-                <DinamicForm />
-            </div>
+            <>
+                <DinamicForm
+                    url="tasks"
+                />
+            </>
         );
     }
 }

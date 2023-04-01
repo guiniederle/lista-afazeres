@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './reset.css';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
 	createBrowserRouter,
@@ -10,6 +9,7 @@ import {
 } from "react-router-dom";
 import Root from './routes/root';
 import ErrorPage from './error-page';
+import Tasks from './routes/tasks';
 
 const router = createBrowserRouter([
 	{
@@ -18,10 +18,18 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage />
 	},
 	{
-		path: "/teste",
-		element: <App />
-	},
+		path: "/tasks",
+		element: <Tasks />
+	}
 ]);
+
+// const router = createBrowserRouter(
+// 	createRoutesFromElements(
+// 		<Route path="/" element={<Root />}>
+// 			<Route path="dashboard" element={<Dashboard />} />
+// 		</Route>
+// 	)
+// );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
