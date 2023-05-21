@@ -1,7 +1,7 @@
 import React from "react";
 import { FaUserPlus } from 'react-icons/fa';
 import { MdPersonRemove } from 'react-icons/md';
-import { Form } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 
 class DinamicForm extends React.Component {
 	constructor(props) {
@@ -49,6 +49,13 @@ class DinamicForm extends React.Component {
 		const participants = this.state.participants;
 		participants[name] = value;
 
+		// const dispatch = useDispatch();
+		// const data = useSelector(state => state.data.data);
+
+		// const handleChange = event => {
+		// dispatch(updateData(event.target.value));
+		// }
+
 		this.setState({
 			participants
 		});
@@ -76,7 +83,7 @@ class DinamicForm extends React.Component {
 		);
 
 		return (
-			<Form method="get" action="/tasks">
+			<Form>
 				<div>
 					{participants}
 				</div>
@@ -85,11 +92,12 @@ class DinamicForm extends React.Component {
 						<FaUserPlus className="" />
 						<label className="">Adicionar Participante</label>
 					</button>
-					<button
+					<Link to='/tasks' state={{ nome: 'gui teste' }}>Task</Link>
+					{/* <button
 						type="submit"
 					>
 						Ir para tarefas
-					</button>
+					</button> */}
 				</div>
 			</Form>
 		);
