@@ -2,15 +2,14 @@ import TasksForm from "../components/TasksForm";
 import { useLocation } from 'react-router-dom';
 
 export default function Tasks() {
-    const location = useLocation();
-    console.log(location);
-    // const { nome } = location.state;
+	const location = useLocation();
+	const participants = location.state.records;
 
-    // console.log('Nome: ' + nome);
-
-    return (
-        <>
-            <TasksForm />
-        </>
-    );
+	return (
+		<>
+			<TasksForm
+				participants={participants}
+			/>
+		</>
+	);
 }
