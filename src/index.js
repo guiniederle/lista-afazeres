@@ -10,8 +10,7 @@ import {
 import Root from './routes/root';
 import ErrorPage from './error-page';
 import Tasks from './routes/tasks';
-import { Provider } from 'react-redux';
-import store from './redux/store';
+import Sort from './routes/sort';
 
 const router = createBrowserRouter([
 	{
@@ -22,23 +21,17 @@ const router = createBrowserRouter([
 	{
 		path: "/tasks",
 		element: <Tasks />
+	},
+	{
+		path: "/sort",
+		element: <Sort />
 	}
 ]);
-
-// const router = createBrowserRouter(
-// 	createRoutesFromElements(
-// 		<Route path="/" element={<Root />}>
-// 			<Route path="dashboard" element={<Dashboard />} />
-// 		</Route>
-// 	)
-// );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<RouterProvider router={router} />
-		</Provider>
+		<RouterProvider router={router} />
 	</React.StrictMode>
 );
 
