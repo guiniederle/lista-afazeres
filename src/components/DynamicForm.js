@@ -7,17 +7,17 @@ import PropTypes from "prop-types";
 class DynamicForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			records: [],
-			return: null
-		};
 
 		this.formName = props.name;
 		this.url = "/" + props.url;
-		this.data = props.data;
-		this.handleInsertRecord = this.handleInsertRecord.bind(this);	
+		this.data = props.data ?? [];
+		this.handleInsertRecord = this.handleInsertRecord.bind(this);
 		this.handleRemoveRecord = this.handleRemoveRecord.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+
+		this.state = {
+			records: []
+		};
 	}
 
 	handleInsertRecord() {
@@ -34,6 +34,7 @@ class DynamicForm extends React.Component {
 		let records = this.state.records;
 
 		records.splice(recordNumber, 1);
+		this.data[this.props.objectName] = records;
 
 		this.setState({
 			records: records
@@ -45,7 +46,8 @@ class DynamicForm extends React.Component {
 		const value = event.target.value;
 		let records = this.state.records;
 		records[name] = value;
-
+		this.data[this.props.objectName] = records;
+		
 		this.setState({
 			records
 		});
@@ -82,7 +84,7 @@ class DynamicForm extends React.Component {
 						<FaUserPlus className="" />
 						<label className="">Adicionar {this.formName.toLowerCase()}</label>
 					</button>
-					<Link to={this.url} state={{records: this.state.records, data: this.data}}>{this.nextPage}</Link>
+					<Link to={this.url} state={{data: this.data}}>{this.props.nextPage}</Link>
 				</div>
 			</Form>
 		);
@@ -93,7 +95,8 @@ DynamicForm.propTypes = {
 	url: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
 	nextPage: PropTypes.string.isRequired,
-	data: PropTypes.object
+	objectName: PropTypes.string.isRequired,
+	data: PropTypes.array
 }
 
 export default DynamicForm;

@@ -10,6 +10,7 @@ class ParticipantsForm extends React.Component
                     url="tasks"
                     name="Participante"
                     nextPage="Ir para tarefas"
+                    objectName="participants"
                 />
             </>
         );

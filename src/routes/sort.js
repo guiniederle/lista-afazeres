@@ -1,15 +1,17 @@
 import { useLocation } from 'react-router-dom';
+import SortResult from '../components/SortResult';
 
 export default function Sort() {
 	const location = useLocation();
-	console.log(location);
-	// const participants = location.state;
+	const participants = location.state.data.participants;
+	const tasks = location.state.data.tasks;
 
-	// return (
-	// 	<>
-	// 		<TasksForm
-	// 			participants={participants}
-	// 		/>
-	// 	</>
-	// );
+	return (
+		<>
+			<SortResult
+				participants={participants}
+				tasks={tasks}
+			/>
+		</>
+	);
 }

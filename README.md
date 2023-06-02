@@ -1,3 +1,5 @@
+I'm started the project with the legacy way, so now, I'm will try migrate to the new form.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

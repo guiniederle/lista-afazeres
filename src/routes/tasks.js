@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function Tasks() {
 	const location = useLocation();
-	const participants = location.state.records;
+	const participants = location.state.data;
 
 	return (
 		<>

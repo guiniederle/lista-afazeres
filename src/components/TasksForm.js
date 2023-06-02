@@ -3,14 +3,6 @@ import DynamicForm from "./DynamicForm";
 
 class TasksForm extends React.Component
 {
-    constructor(props) {
-        super(props);
-
-        this.participants = {
-            participants: props.participants
-        };
-    }
-
     render() {
         return (
             <>
@@ -18,7 +10,8 @@ class TasksForm extends React.Component
                     url="sort"
                     name="Tarefas"
                     nextPage="Sortear"
-                    data={this.participants}
+                    objectName="tasks"
+                    data={this.props.participants}
                 />
             </>
         );
