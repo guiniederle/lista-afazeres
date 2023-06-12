@@ -9,9 +9,9 @@ SortResult.propTypes = {
 function tasksByParticipant(participants, tasks) {
 	participants.sort(() => Math.random() - 0.5);
 	tasks.sort(() => Math.random() - 0.5);
-	let tmpTasksByParticipant = []
-	let sliceStart = 0;
+	let tmpTasksByParticipant = [];
 	const countTasksByParticipant = parseInt((tasks.length / participants.length).toFixed());
+	let sliceStart = 0;
 	let sliceEnd = countTasksByParticipant;
 
 	participants.forEach((element, index) => {
@@ -34,22 +34,23 @@ export default function SortResult(props) {
 	const [participants] = useState(props.participants);
 	const [tasks] = useState(props.tasks);
 
-	const mountedTasksByParticipants = tasksByParticipant(participants, tasks).map((element, index) => {
-		const listedTasks = element.tasks.map((task, index) =>
-			<li key={index}>{task}</li>
-		);
+	const mountedTasksByParticipants = tasksByParticipant(participants, tasks)
+		.map((element, index) => {
+			const listedTasks = element.tasks.map((task, index) =>
+				<li key={index}>{task}</li>
+			);
 
-		return (
-			<div key={index}>
-				<div>
-					<label>Participante {element.name}:</label>
+			return (
+				<div key={index}>
+					<div>
+						<label>Participante {element.name}:</label>
+					</div>
+					<div>
+						{listedTasks}
+					</div>
 				</div>
-				<div>
-					{listedTasks}
-				</div>
-			</div>
-		);
-	});
+			);
+		});
 
 	return (
 		<>

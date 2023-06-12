@@ -56,18 +56,18 @@ class DynamicForm extends React.Component {
 	render() {
 		const records = this.state.records.map(
 			(record, index) =>
-				<div key={index}>
-					<label className="">{this.formName} {index+1}</label>
+				<div key={index} className="m-1">
+					<label className="">{this.formName} {index+1}: </label>
 					<input
 						type='text'
 						value={record}
-						className=""
+						className="transition duration-150 ease-in focus:border-b focus:border-dotted focus:border-sky-500"
 						onChange={this.handleInputChange}
 						name={index}
 					/>
 					<button
 						type="button"
-						className="p-1"
+						className=""
 						onClick={this.handleRemoveRecord.bind(this, index)}>
 							<MdPersonRemove className="text-red-500" />
 					</button>
@@ -75,12 +75,16 @@ class DynamicForm extends React.Component {
 		);
 
 		return (
-			<Form>
+			<Form className="p-2 border border-solid border-sky-500 rounded bg-white">
 				<div>
 					{records}
 				</div>
-				<div>
-					<button type="button" onClick={this.handleInsertRecord} className="">
+				<div className="">
+					<button
+						type="button"
+						onClick={this.handleInsertRecord}
+						className="border border-solid border-green-700 rounded bg-green-200 text-green-700"
+					>
 						<FaUserPlus className="" />
 						<label className="">Adicionar {this.formName.toLowerCase()}</label>
 					</button>
