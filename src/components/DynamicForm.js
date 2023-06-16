@@ -56,7 +56,7 @@ class DynamicForm extends React.Component {
 	render() {
 		const records = this.state.records.map(
 			(record, index) =>
-				<div key={index} className="m-1 w-full lg:w-8/12 flex">
+				<div key={index} className="m-1 w-11/12 lg:w-8/12 flex">
 					<label className="flex-none">{this.formName} {index+1}: </label>
 					<input
 						type='text'
@@ -75,12 +75,12 @@ class DynamicForm extends React.Component {
 		);
 
 		return (
-			<Form className="p-2 border border-solid border-sky-500 rounded bg-white w-11/12">
+			<Form className="p-2 border border-solid border-sky-500 rounded bg-white w-11/12 lg:w-8/12">
 				<div className="flex flex-col items-center">
 					{records}
 				</div>
-				<div className="flex flex-col items-center">
-					<div className="w-full lg:w-8/12 flex justify-around">
+				<div className="flex flex-col">
+					<div className="flex justify-around">
 						<button
 							type="button"
 							onClick={this.handleInsertRecord}
