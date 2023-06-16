@@ -56,18 +56,18 @@ class DynamicForm extends React.Component {
 	render() {
 		const records = this.state.records.map(
 			(record, index) =>
-				<div key={index} className="m-1">
-					<label className="">{this.formName} {index+1}: </label>
+				<div key={index} className="m-1 w-full lg:w-8/12 flex">
+					<label className="flex-none">{this.formName} {index+1}: </label>
 					<input
 						type='text'
 						value={record}
-						className="transition duration-150 ease-in focus:border-b focus:border-dotted focus:border-sky-500"
+						className="transition duration-150 ease-in focus:border-b focus:border-dotted focus:border-sky-500 flex-auto"
 						onChange={this.handleInputChange}
 						name={index}
 					/>
 					<button
 						type="button"
-						className=""
+						className="flex-none"
 						onClick={this.handleRemoveRecord.bind(this, index)}>
 							<MdPersonRemove className="text-red-500" />
 					</button>
@@ -75,20 +75,22 @@ class DynamicForm extends React.Component {
 		);
 
 		return (
-			<Form className="p-2 border border-solid border-sky-500 rounded bg-white">
-				<div>
+			<Form className="p-2 border border-solid border-sky-500 rounded bg-white w-11/12">
+				<div className="flex flex-col items-center">
 					{records}
 				</div>
-				<div className="">
-					<button
-						type="button"
-						onClick={this.handleInsertRecord}
-						className="border border-solid border-green-700 rounded bg-green-200 text-green-700"
-					>
-						<FaUserPlus className="" />
-						<label className="">Adicionar {this.formName.toLowerCase()}</label>
-					</button>
-					<Link to={this.url} state={{data: this.data}}>{this.props.nextPage}</Link>
+				<div className="flex flex-col items-center">
+					<div className="w-full lg:w-8/12 flex justify-around">
+						<button
+							type="button"
+							onClick={this.handleInsertRecord}
+							className="border border-solid border-green-700 rounded bg-green-200 text-green-700"
+						>
+							<FaUserPlus className="" />
+							<label className="">Adicionar {this.formName.toLowerCase()}</label>
+						</button>
+						<Link to={this.url} state={{data: this.data}}>{this.props.nextPage}</Link>
+					</div>
 				</div>
 			</Form>
 		);
