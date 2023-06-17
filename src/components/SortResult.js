@@ -41,20 +41,22 @@ export default function SortResult(props) {
 			);
 
 			return (
-				<div key={index}>
+				<div key={index} className="p-2">
 					<div>
 						<label>Participante {element.name}:</label>
 					</div>
 					<div>
-						{listedTasks}
+						<ul class="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-400">
+							{listedTasks}
+						</ul>
 					</div>
 				</div>
 			);
 		});
 
 	return (
-		<>
+		<div className="p-2">
 			{mountedTasksByParticipants}
-		</>
+		</div>
 	);
 }
