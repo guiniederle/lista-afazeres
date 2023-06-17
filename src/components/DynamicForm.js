@@ -1,6 +1,7 @@
 import React from "react";
 import { FaUserPlus } from "react-icons/fa";
 import { MdPersonRemove } from "react-icons/md";
+import { GrLinkNext } from "react-icons/gr";
 import { Form, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -57,11 +58,11 @@ class DynamicForm extends React.Component {
 		const records = this.state.records.map(
 			(record, index) =>
 				<div key={index} className="m-1 w-11/12 lg:w-8/12 flex">
-					<label className="flex-none">{this.formName} {index+1}: </label>
+					<label className="flex-none">{this.formName} {index+1}:</label>
 					<input
 						type='text'
 						value={record}
-						className="transition duration-150 ease-in focus:border-b focus:border-dotted focus:border-sky-500 flex-auto"
+						className="transition duration-150 ease-in focus:border-b focus:border-dotted focus:border-personalblue flex-auto px-1"
 						onChange={this.handleInputChange}
 						name={index}
 					/>
@@ -75,7 +76,7 @@ class DynamicForm extends React.Component {
 		);
 
 		return (
-			<Form className="p-2 border border-solid border-sky-500 rounded bg-white w-11/12 lg:w-8/12">
+			<Form className="p-2 border border-solid border-personalblue rounded bg-white w-11/12 lg:w-8/12">
 				<div className="flex flex-col items-center">
 					{records}
 				</div>
@@ -84,12 +85,19 @@ class DynamicForm extends React.Component {
 						<button
 							type="button"
 							onClick={this.handleInsertRecord}
-							className="border border-solid border-green-700 rounded bg-green-200 text-green-700"
+							className="border border-solid border-green-700 rounded bg-green-200 text-green-700 flex p-1 justify-center items-center"
 						>
-							<FaUserPlus className="" />
-							<label className="">Adicionar {this.formName.toLowerCase()}</label>
+							<FaUserPlus className="p-0.5" />
+							<label>Adicionar {this.formName.toLowerCase()}</label>
 						</button>
-						<Link to={this.url} state={{data: this.data}}>{this.props.nextPage}</Link>
+						<Link
+							to={this.url}
+							state={{data: this.data}}
+							className="border border-solid border-blue-800 bg-blue-300 rounded text-blue-800 p-1 flex justify-center items-center"
+						>
+							<GrLinkNext className="p-0.5" />
+							<label>{this.props.nextPage}</label>
+						</Link>
 					</div>
 				</div>
 			</Form>
