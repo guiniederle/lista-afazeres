@@ -15,7 +15,6 @@ class DynamicForm extends React.Component {
 		this.handleInsertRecord = this.handleInsertRecord.bind(this);
 		this.handleRemoveRecord = this.handleRemoveRecord.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleValidateFields = this.handleValidateFields.bind(this);
 		this.disabledLink = true;
 
 		this.state = {
