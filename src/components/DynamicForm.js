@@ -1,9 +1,9 @@
 import React from "react";
 import { FaUserPlus } from "react-icons/fa";
 import { MdPersonRemove } from "react-icons/md";
-import { GrLinkNext } from "react-icons/gr";
-import { Form, Link } from "react-router-dom";
+import { Form } from "react-router-dom";
 import PropTypes from "prop-types";
+import PersonalLink from "./PersonalLink";
 
 class DynamicForm extends React.Component {
 	constructor(props) {
@@ -15,6 +15,8 @@ class DynamicForm extends React.Component {
 		this.handleInsertRecord = this.handleInsertRecord.bind(this);
 		this.handleRemoveRecord = this.handleRemoveRecord.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleValidateFields = this.handleValidateFields.bind(this);
+		this.disabledLink = true;
 
 		this.state = {
 			records: []
@@ -25,6 +27,7 @@ class DynamicForm extends React.Component {
 		let records = this.state.records;
 
 		records.push('');
+		this.disabledLink = true;
 
 		this.setState({
 			records: records
@@ -48,6 +51,10 @@ class DynamicForm extends React.Component {
 		let records = this.state.records;
 		records[name] = value;
 		this.data[this.props.objectName] = records;
+
+		if (value !== "") {
+			this.disabledLink = false;
+		}
 		
 		this.setState({
 			records
@@ -78,6 +85,9 @@ class DynamicForm extends React.Component {
 		return (
 			<Form className="p-2 border border-solid border-personalblue rounded bg-white w-11/12 lg:w-8/12">
 				<div className="flex flex-col items-center">
+					<label>{this.props.formTitle}</label>
+				</div>
+				<div className="flex flex-col items-center">
 					{records}
 				</div>
 				<div className="flex flex-col">
@@ -90,14 +100,13 @@ class DynamicForm extends React.Component {
 							<FaUserPlus className="p-0.5" />
 							<label>Adicionar {this.formName.toLowerCase()}</label>
 						</button>
-						<Link
+						<PersonalLink
 							to={this.url}
 							state={{data: this.data}}
-							className="border border-solid border-blue-800 bg-blue-300 rounded text-blue-800 p-1 flex justify-center items-center"
+							nextPage={this.props.nextPage}
+							disabled={this.disabledLink}
 						>
-							<GrLinkNext className="p-0.5" />
-							<label>{this.props.nextPage}</label>
-						</Link>
+						</PersonalLink>
 					</div>
 				</div>
 			</Form>
@@ -110,7 +119,8 @@ DynamicForm.propTypes = {
 	name: PropTypes.string.isRequired,
 	nextPage: PropTypes.string.isRequired,
 	objectName: PropTypes.string.isRequired,
-	data: PropTypes.array
+	data: PropTypes.array,
+	formTitle: PropTypes.string
 }
 
 export default DynamicForm;

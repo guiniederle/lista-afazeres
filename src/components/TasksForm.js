@@ -12,6 +12,7 @@ class TasksForm extends React.Component
                     nextPage="Sortear"
                     objectName="tasks"
                     data={this.props.participants}
+                    formTitle="Adicione pelo menos uma tarefa:"
                 />
             </>
         );

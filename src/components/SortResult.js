@@ -46,7 +46,7 @@ export default function SortResult(props) {
 						<label>Participante {element.name}:</label>
 					</div>
 					<div>
-						<ul class="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-400">
+						<ul className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-400">
 							{listedTasks}
 						</ul>
 					</div>
