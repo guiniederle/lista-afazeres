@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { BsFillPersonFill } from "react-icons/bs";
 
 SortResult.propTypes = {
 	participants: PropTypes.array.isRequired,
@@ -42,8 +43,9 @@ export default function SortResult(props) {
 
 			return (
 				<div key={index} className="p-2">
-					<div>
-						<label>Participante {element.name}:</label>
+					<div className="flex items-center">
+						<BsFillPersonFill />
+						<label className="ml-1">{element.name}:</label>
 					</div>
 					<div>
 						<ul className="marker:text-sky-400 list-disc pl-5 space-y-3 text-slate-400">
@@ -55,7 +57,7 @@ export default function SortResult(props) {
 		});
 
 	return (
-		<div className="p-2">
+		<div className="p-2 border border-solid border-personalblue rounded bg-white w-11/12 lg:w-8/12">
 			{mountedTasksByParticipants}
 		</div>
 	);

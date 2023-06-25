@@ -1,9 +1,10 @@
 import React from "react";
-import { FaUserPlus } from "react-icons/fa";
-import { MdPersonRemove } from "react-icons/md";
+import { FaPlus } from "react-icons/fa";
+import { CiCircleRemove } from "react-icons/ci";
 import { Form } from "react-router-dom";
 import PropTypes from "prop-types";
 import PersonalLink from "./PersonalLink";
+import PersonalLabel from "./PersonalLabel";
 
 class DynamicForm extends React.Component {
 	constructor(props) {
@@ -63,8 +64,12 @@ class DynamicForm extends React.Component {
 	render() {
 		const records = this.state.records.map(
 			(record, index) =>
-				<div key={index} className="m-1 w-11/12 lg:w-8/12 flex">
-					<label className="flex-none">{this.formName} {index+1}:</label>
+				<div key={index} className="m-1 lg:w-8/12 flex">
+					<PersonalLabel
+						title={this.formName}
+						index={index+1}
+						className="flex-none"
+					/>
 					<input
 						type='text'
 						value={record}
@@ -75,8 +80,9 @@ class DynamicForm extends React.Component {
 					<button
 						type="button"
 						className="flex-none"
-						onClick={this.handleRemoveRecord.bind(this, index)}>
-							<MdPersonRemove className="text-red-500" />
+						onClick={this.handleRemoveRecord.bind(this, index)}
+					>
+							<CiCircleRemove className="text-red-500" />
 					</button>
 				</div>
 		);
@@ -96,8 +102,8 @@ class DynamicForm extends React.Component {
 							onClick={this.handleInsertRecord}
 							className="border border-solid border-green-700 rounded bg-green-200 text-green-700 flex p-1 justify-center items-center"
 						>
-							<FaUserPlus className="p-0.5" />
-							<label>Adicionar {this.formName.toLowerCase()}</label>
+							<FaPlus className="p-0.5" />
+							<label className="text-base md:text-xs sm:text-xs">Adicionar {this.formName.toLowerCase()}</label>
 						</button>
 						<PersonalLink
 							to={this.url}

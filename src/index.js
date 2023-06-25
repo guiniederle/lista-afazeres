@@ -12,6 +12,8 @@ import ErrorPage from './error-page';
 import Tasks from './routes/tasks';
 import Sort from './routes/sort';
 
+import 'react-tooltip/dist/react-tooltip.css'
+
 const router = createBrowserRouter([
 	{
 		path: "/",

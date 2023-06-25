@@ -6,13 +6,13 @@ export default function PersonalLink({to, state, nextPage, disabled}) {
 	const baseClassName = "border border-solid rounded p-1 flex justify-center items-center ";
 	let className = baseClassName + "border-blue-800 bg-blue-300 text-blue-800";
 	let classNameIcon = "p-0.5";
-	let classNameLabel = "";
+	let classNameLabel = "text-base md:text-xs sm:text-xs";
 
 	if (disabled) {
 		url = "";
 		className = baseClassName + "border-gray-400 bg-gray-200 text-gray-400 opacity-70 cursor-no-drop";
 		classNameIcon += " opacity-40";
-		classNameLabel += "cursor-no-drop";
+		classNameLabel += " cursor-no-drop";
 	}
 
 	return (
