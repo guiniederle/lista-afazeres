@@ -1,12 +1,12 @@
 import React from "react";
-import DynamicForm from "./DynamicForm";
+import DefaultForm from "./DefaultForm";
 
 class ParticipantsForm extends React.Component
 {
 	render() {
 		return (
 			<>
-				<DynamicForm
+				<DefaultForm
 					url="tasks"
 					name="Participante"
 					nextPage="Ir para tarefas"

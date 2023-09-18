@@ -3,8 +3,8 @@ import { FaPlus } from "react-icons/fa";
 import { CiCircleRemove } from "react-icons/ci";
 import { Form } from "react-router-dom";
 import PropTypes from "prop-types";
-import PersonalLink from "./PersonalLink";
-import PersonalLabel from "./PersonalLabel";
+import PersonalLink from "../PersonalLink";
+import PersonalLabel from "../PersonalLabel";
 
 class DynamicForm extends React.Component {
 	constructor(props) {
@@ -106,7 +106,7 @@ class DynamicForm extends React.Component {
 							<label className="text-base md:text-xs sm:text-xs">Adicionar {this.formName.toLowerCase()}</label>
 						</button>
 						<PersonalLink
-							to={this.url}
+							to={this.url + '?v=1'}
 							state={{data: this.data}}
 							nextPage={this.props.nextPage}
 							disabled={this.disabledLink}

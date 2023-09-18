@@ -1,12 +1,12 @@
 import React from "react";
-import DynamicForm from "./DynamicForm";
+import DefaultForm from "./DefaultForm";
 
 class TasksForm extends React.Component
 {
     render() {
         return (
             <>
-                <DynamicForm
+                <DefaultForm
                     url="sort"
                     name="Tarefas"
                     nextPage="Sortear"
