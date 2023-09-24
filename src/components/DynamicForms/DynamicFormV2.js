@@ -9,41 +9,46 @@ export default function DynamicFormV2({ url, name, nextPage, objectName, formTit
 	const inputLabel = objectName === 'participants' ? `Nome do ${name}` : `Informe a ${name}`;
 	let disabledLink = true;
 	const [records, setRecords] = useState([]);
+	const [recordsWithElements, setRecordsWithElements] = useState(<></>);
 
 	function handleInsert() {
 		const dynamicInputValue = document.getElementById('dynamicInput');
+		let temp = records;
 
-		records.push({
+		temp.push({
 			id: records.length,
 			value: dynamicInputValue.value
 		});
+		setRecords(temp);
+
+		setRecordsWithElements(
+			records.map(
+				(record, index) =>
+					<div key={index} className="m-1 lg:w-8/12 flex">
+						<PersonalLabel
+							title={name}
+							index={index+1}
+							className="flex-none"
+						/>
+						<label
+							className="transition duration-150 ease-in focus:border-b focus:border-dotted focus:border-personalblue flex-auto px-1"
+						>
+							{record.value}
+						</label>
+						<button
+							type="button"
+							className="flex-none"
+							// onClick={this.handleRemoveRecord.bind(this, index)}
+						>
+							<CiCircleRemove className="text-red-500" />
+						</button>
+					</div>
+			)
+		);
 
 		dynamicInputValue.value = '';
+		dynamicInputValue.focus();
 	}
-
-	const recordsElements = records.map(
-		(record, index) =>
-			<div key={index} className="m-1 lg:w-8/12 flex">
-				<PersonalLabel
-					title={name}
-					index={index+1}
-					className="flex-none"
-				/>
-				<input
-					type='text'
-					value={record.value}
-					className="transition duration-150 ease-in focus:border-b focus:border-dotted focus:border-personalblue flex-auto px-1"
-					name={index}
-				/>
-				<button
-					type="button"
-					className="flex-none"
-					// onClick={this.handleRemoveRecord.bind(this, index)}
-				>
-					<CiCircleRemove className="text-red-500" />
-				</button>
-			</div>
-	);
 
 	return(
 		<>
@@ -74,7 +79,7 @@ export default function DynamicFormV2({ url, name, nextPage, objectName, formTit
 					</Form>
 				</div>
 				<div className="flex flex-col items-center">
-					{recordsElements}
+					{recordsWithElements}
 				</div>
 				
 				<PersonalLink
