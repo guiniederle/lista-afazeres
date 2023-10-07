@@ -3,7 +3,7 @@ import PersonalLink from "../PersonalLink";
 import { Form } from "react-router-dom";
 import PersonalLabel from "../PersonalLabel";
 import { useState } from "react";
-import { CiCircleRemove } from "react-icons/ci";
+import { IoMdRemoveCircleOutline } from "react-icons/io";
 
 export default function DynamicFormV2({ url, name, nextPage, objectName, formTitle }) {
 	const inputLabel = objectName === 'participants' ? `Nome do ${name}` : `Informe a ${name}`;
@@ -11,16 +11,7 @@ export default function DynamicFormV2({ url, name, nextPage, objectName, formTit
 	const [records, setRecords] = useState([]);
 	const [recordsWithElements, setRecordsWithElements] = useState(<></>);
 
-	function handleInsert() {
-		const dynamicInputValue = document.getElementById('dynamicInput');
-		let temp = records;
-
-		temp.push({
-			id: records.length,
-			value: dynamicInputValue.value
-		});
-		setRecords(temp);
-
+	const handleUpdateRecordsWithElements = () => {
 		setRecordsWithElements(
 			records.map(
 				(record, index) =>
@@ -38,13 +29,35 @@ export default function DynamicFormV2({ url, name, nextPage, objectName, formTit
 						<button
 							type="button"
 							className="flex-none"
-							// onClick={this.handleRemoveRecord.bind(this, index)}
+							onClick={handleRemoveParticipant.bind(this, index)}
 						>
-							<CiCircleRemove className="text-red-500" />
+							<IoMdRemoveCircleOutline className="text-red-500" />
 						</button>
 					</div>
 			)
 		);
+	}
+
+	const handleRemoveParticipant = (index) => {
+		let recordsTemp = records;
+
+		recordsTemp.splice(index, 1);
+		setRecords(recordsTemp);
+
+		handleUpdateRecordsWithElements();
+	}
+
+	function handleInsert() {
+		const dynamicInputValue = document.getElementById('dynamicInput');
+		let temp = records;
+
+		temp.push({
+			id: records.length,
+			value: dynamicInputValue.value
+		});
+		setRecords(temp);
+
+		handleUpdateRecordsWithElements();
 
 		dynamicInputValue.value = '';
 		dynamicInputValue.focus();
