@@ -35,6 +35,8 @@ export default function SortResult(props) {
 	const [participants] = useState(props.participants);
 	const [tasks] = useState(props.tasks);
 
+	console.log(tasksByParticipant(participants, tasks));
+
 	const mountedTasksByParticipants = tasksByParticipant(participants, tasks)
 		.map((element, index) => {
 			const listedTasks = element.tasks.map((task, index) =>
